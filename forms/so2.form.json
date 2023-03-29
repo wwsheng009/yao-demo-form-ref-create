@@ -1,0 +1,246 @@
+{
+  "name": "so",
+  "action": {
+    "bind": {
+      "model": "so",
+      "option": {
+        "withs": {}
+      }
+    },
+    "find": {
+      "process": "scripts.so.Find"
+    },
+    "save": {
+      "process": "scripts.so.Save"
+    }
+  },
+  "layout": {
+    "primary": "id",
+    "actions": [
+      {
+        "title": "返回",
+        "icon": "icon-arrow-left",
+        "showWhenAdd": true,
+        "showWhenView": true,
+        "action": [
+          {
+            "name": "CloseModal",
+            "type": "Common.closeModal",
+            "payload": {}
+          }
+        ]
+      },
+      {
+        "title": "保存",
+        "icon": "icon-check",
+        "style": "primary",
+        "showWhenAdd": true,
+        "action": [
+          {
+            "name": "Submit",
+            "type": "Form.submit",
+            "payload": {}
+          },
+          {
+            "name": "Back",
+            "type": "Common.closeModal",
+            "payload": {}
+          },
+          {
+            "type": "Common.historyPush",
+            "payload": {
+              "pathname": "/x/Form/so/[[$Submit]]/view"
+            },
+            "name": "HistoryPush"
+          }
+        ]
+      },
+      {
+        "icon": "icon-trash-2",
+        "style": "danger",
+        "title": "Delete",
+        "action": [
+          {
+            "name": "Confirm",
+            "type": "Common.confirm",
+            "payload": {
+              "title": "确认删除",
+              "content": "删除后不可撤销！"
+            }
+          },
+          {
+            "name": "Delete",
+            "payload": {
+              "model": "so"
+            },
+            "type": "Form.delete"
+          },
+          {
+            "name": "Back",
+            "type": "Common.closeModal",
+            "payload": {}
+          }
+        ]
+      }
+    ],
+    "form": {
+      "sections": [
+        {
+          "columns": [
+            {
+              "name": "ID",
+              "width": 12
+            },
+            {
+              "width": 12,
+              "name": "订单日期"
+            },
+            {
+              "name": "客户名称",
+              "width": 12
+            },
+            {
+              "width": 12,
+              "name": "宠物名称"
+            },
+            {
+              "name": "数量",
+              "width": 12
+            },
+            {
+              "width": 12,
+              "name": "单价"
+            },
+            {
+              "name": "总金额",
+              "width": 12
+            },
+            {
+              "name": "订单状态",
+              "width": 12
+            },
+            {
+              "width": 24,
+              "name": "备注"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "fields": {
+    "form": {
+      "订单日期": {
+        "bind": "order_date",
+        "edit": {
+          "props": {
+            "placeholder": "请选择 订单日期",
+            "picker": "date"
+          },
+          "type": "DatePicker"
+        }
+      },
+      "宠物名称": {
+        "edit": {
+          "type": "Input",
+          "props": {}
+        },
+        "bind": "pet_name"
+      },
+      "总金额": {
+        "bind": "total_amount",
+        "edit": {
+          "type": "InputNumber",
+          "props": {
+            "placeholder": "请输入 总金额"
+          }
+        }
+      },
+      "订单状态": {
+        "edit": {
+          "type": "Select",
+          "props": {
+            "placeholder": "请选择 订单状态",
+            "options": [
+              {
+                "label": "created",
+                "value": "created"
+              },
+              {
+                "label": "processing",
+                "value": "processing"
+              },
+              {
+                "label": "completed",
+                "value": "completed"
+              },
+              {
+                "label": "canceled",
+                "value": "canceled"
+              }
+            ]
+          }
+        },
+        "bind": "status"
+      },
+      "备注": {
+        "bind": "remarks",
+        "edit": {
+          "type": "TextArea",
+          "props": {
+            "placeholder": "请输入 备注",
+            "autoSize": {
+              "minRows": 2,
+              "maxRows": 6
+            }
+          }
+        }
+      },
+
+      "ID": {
+        "bind": "id",
+        "edit": {
+          "type": "InputNumber",
+          "props": {
+            "disabled": true,
+            "placeholder": "请输入 ID"
+          }
+        }
+      },
+      "客户名称": {
+        "bind": "customer_name",
+        "view": {
+          "type": "",
+          "props": {}
+        },
+        "edit": {
+          "type": "Input",
+          "props": {
+            "placeholder": "请输入 客户名称"
+          }
+        }
+      },
+      "数量": {
+        "bind": "quantity",
+        "edit": {
+          "type": "InputNumber",
+          "props": {
+            "placeholder": "请输入 数量"
+          }
+        }
+      },
+      "单价": {
+        "bind": "unit_price",
+        "edit": {
+          "props": {
+            "placeholder": "请输入 单价"
+          },
+          "type": "InputNumber"
+        }
+      }
+    }
+  },
+  "config": {
+    "full": true
+  }
+}

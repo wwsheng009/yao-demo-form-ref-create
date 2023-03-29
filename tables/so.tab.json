@@ -1,0 +1,382 @@
+{
+  "name": "so",
+  "action": {
+    "bind": {
+      "model": "so",
+      "option": {
+        "withs": {},
+        "form": "so"
+      }
+    }
+  },
+  "layout": {
+    "primary": "id",
+    "header": {
+      "preset": {},
+      "actions": []
+    },
+    "filter": {
+      "columns": [
+        {
+          "name": "订单日期"
+        },
+        {
+          "name": "客户名称"
+        }
+      ],
+      "actions": [
+        {
+          "title": "创建",
+          "width": 3,
+          "icon": "icon-plus",
+          "action": [
+            {
+              "name": "HistoryPush",
+              "type": "Common.historyPush",
+              "payload": {
+                "pathname": "/x/Form/so/0/edit"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "table": {
+      "operation": {
+        "width": 140,
+        "actions": [
+          {
+            "title": "查看",
+            "icon": "icon-eye",
+            "action": [
+              {
+                "name": "OpenModal",
+                "type": "Common.openModal",
+                "payload": {
+                  "Form": {
+                    "model": "so",
+                    "type": "view"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "title": "编辑",
+            "icon": "icon-edit-2",
+            "action": [
+              {
+                "name": "OpenModal",
+                "type": "Common.openModal",
+                "payload": {
+                  "Form": {
+                    "type": "edit",
+                    "model": "so"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "title": "Delete",
+            "icon": "icon-trash-2",
+            "style": "danger",
+            "confirm": {
+              "title": "确认",
+              "desc": "请确认删除，删除后数据无法恢复"
+            },
+            "action": [
+              {
+                "type": "Table.delete",
+                "payload": {
+                  "model": "so"
+                },
+                "name": "Delete"
+              }
+            ]
+          }
+        ]
+      },
+      "props": {
+        "scroll": {
+          "x": "max-content"
+        }
+      },
+      "columns": [
+        {
+          "name": "ID",
+          "width": 100
+        },
+        {
+          "name": "订单日期",
+          "width": 160
+        },
+        {
+          "width": 160,
+          "name": "客户名称"
+        },
+        {
+          "width": 160,
+          "name": "宠物名称"
+        },
+        {
+          "width": 100,
+          "name": "数量"
+        },
+        {
+          "name": "单价",
+          "width": 100
+        },
+        {
+          "name": "总金额",
+          "width": 100
+        },
+        {
+          "name": "订单状态",
+          "width": 160
+        },
+        {
+          "name": "备注",
+          "width": 160
+        },
+        {
+          "width": 160,
+          "name": "创建时间"
+        },
+        {
+          "name": "更新时间",
+          "width": 160
+        }
+      ]
+    }
+  },
+  "fields": {
+    "filter": {
+      "订单日期": {
+        "edit": {
+          "type": "DatePicker",
+          "props": {
+            "picker": "date",
+            "placeholder": "请选择 订单日期"
+          }
+        },
+        "bind": "where.order_date.eq"
+      },
+      "客户名称": {
+        "bind": "where.customer_name.match",
+        "edit": {
+          "type": "Input",
+          "props": {
+            "placeholder": "请输入 客户名称"
+          }
+        }
+      }
+    },
+    "table": {
+      "更新时间": {
+        "bind": "updated_at",
+        "view": {
+          "props": {
+            "format": "YYYY-MM-DD HH:mm:ss"
+          },
+          "type": "Text"
+        },
+        "edit": {
+          "type": "DatePicker",
+          "props": {
+            "placeholder": "请选择 更新时间",
+            "showTime": {
+              "format": "HH:mm:ss"
+            }
+          }
+        }
+      },
+      "订单日期": {
+        "bind": "order_date",
+        "view": {
+          "type": "Text",
+          "props": {
+            "format": "YYYY-MM-DD"
+          }
+        },
+        "edit": {
+          "type": "DatePicker",
+          "props": {
+            "placeholder": "请选择 订单日期",
+            "picker": "date"
+          }
+        }
+      },
+      "总金额": {
+        "edit": {
+          "props": {
+            "placeholder": "请输入 总金额"
+          },
+          "type": "InputNumber"
+        },
+        "bind": "total_amount",
+        "view": {
+          "props": {},
+          "type": "Text"
+        }
+      },
+      "数量": {
+        "bind": "quantity",
+        "view": {
+          "props": {},
+          "type": "Text"
+        },
+        "edit": {
+          "type": "InputNumber",
+          "props": {
+            "placeholder": "请输入 数量"
+          }
+        }
+      },
+      "备注": {
+        "bind": "remarks",
+        "view": {
+          "type": "Tooltip",
+          "props": {
+            "title": "备注"
+          }
+        },
+        "edit": {
+          "type": "TextArea",
+          "props": {
+            "placeholder": "请输入 备注",
+            "autoSize": {
+              "minRows": 2,
+              "maxRows": 6
+            }
+          }
+        }
+      },
+      "创建时间": {
+        "bind": "created_at",
+        "view": {
+          "type": "Text",
+          "props": {
+            "format": "YYYY-MM-DD HH:mm:ss"
+          }
+        },
+        "edit": {
+          "type": "DatePicker",
+          "props": {
+            "placeholder": "请选择 创建时间",
+            "showTime": {
+              "format": "HH:mm:ss"
+            }
+          }
+        }
+      },
+      "ID": {
+        "view": {
+          "type": "Text",
+          "props": {}
+        },
+        "edit": {
+          "type": "InputNumber",
+          "props": {
+            "placeholder": "请输入 ID",
+            "disabled": true
+          }
+        },
+        "bind": "id"
+      },
+      "宠物名称": {
+        "bind": "pet_name",
+        "view": {
+          "type": "Text",
+          "props": {}
+        },
+        "edit": {
+          "props": {
+            "placeholder": "请输入 宠物名称"
+          },
+          "type": "Input"
+        }
+      },
+      "单价": {
+        "bind": "unit_price",
+        "view": {
+          "props": {},
+          "type": "Text"
+        },
+        "edit": {
+          "props": {
+            "placeholder": "请输入 单价"
+          },
+          "type": "InputNumber"
+        }
+      },
+      "客户名称": {
+        "bind": "customer_name",
+        "view": {
+          "props": {},
+          "type": "Text"
+        },
+        "edit": {
+          "props": {
+            "placeholder": "请输入 客户名称"
+          },
+          "type": "Input"
+        }
+      },
+      "订单状态": {
+        "edit": {
+          "props": {
+            "placeholder": "请选择 订单状态",
+            "options": [
+              {
+                "label": "created",
+                "value": "created"
+              },
+              {
+                "value": "processing",
+                "label": "processing"
+              },
+              {
+                "label": "completed",
+                "value": "completed"
+              },
+              {
+                "value": "canceled",
+                "label": "canceled"
+              }
+            ]
+          },
+          "type": "Select"
+        },
+        "bind": "status",
+        "view": {
+          "props": {
+            "placeholder": "请选择 订单状态",
+            "options": [
+              {
+                "label": "created",
+                "value": "created"
+              },
+              {
+                "label": "processing",
+                "value": "processing"
+              },
+              {
+                "label": "completed",
+                "value": "completed"
+              },
+              {
+                "value": "canceled",
+                "label": "canceled"
+              }
+            ]
+          },
+          "type": "Tag"
+        }
+      }
+    }
+  },
+  "config": {
+    "full": true
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "name": "::SalesOrder",
+  "table": { "name": "sales_order", "comment": "销售订单表" },
+  "columns": [
+    { "name": "id", "label": "ID", "type": "ID" },
+    {
+      "name": "order_date",
+      "label": "订单日期",
+      "type": "date",
+      "index": true
+    },
+    {
+      "name": "customer_name",
+      "label": "客户名称",
+      "type": "string",
+      "length": 80,
+      "index": true,
+      "nullable": true
+    },
+    {
+      "name": "pet_name",
+      "label": "宠物名称",
+      "type": "string",
+      "length": 80,
+      "index": true
+    },
+    {
+      "name": "quantity",
+      "label": "数量",
+      "type": "integer",
+      "index": true
+    },
+    {
+      "name": "unit_price",
+      "label": "单价",
+      "type": "float",
+      "index": true
+    },
+    {
+      "name": "total_amount",
+      "label": "总金额",
+      "type": "float",
+      "index": true
+    },
+    {
+      "name": "status",
+      "label": "订单状态",
+      "type": "enum",
+      "option": ["created", "processing", "completed", "canceled"],
+      "index": true
+    },
+    {
+      "name": "remarks",
+      "type": "text",
+      "label": "备注",
+      "nullable": true
+    }
+  ],
+  "relations": {},
+  "values": [],
+  "indexes": [],
+  "option": {
+    "timestamps": true,
+    "soft_deletes": true
+  }
+}
